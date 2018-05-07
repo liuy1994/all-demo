@@ -1,12 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-ReactDOM.render(
-    <h1>Hello, world!</h1>,
-    document.getElementById('root')
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <UserInfo user={props.author} />
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
   );
-registerServiceWorker();
+}
+
+function Avatar(props){
+  return (
+    <img className='Avatar'
+      src={props.user.avatarUrl}
+      alt={props.user.name} 
+    />
+  )
+}
+function UserInfo(props){
+  return (
+    <div className='UserInfo'>
+      <Avatar user={props.author} />
+      <div className='UserInfo-name'>
+        {props.user.name}
+      </div>
+    </div>
+  )
+}
+
+ReactDOM.render(
+  <Comment />,
+  document.getElementById('root')
+)
